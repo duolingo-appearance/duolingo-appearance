@@ -1,0 +1,72 @@
+* {
+  font-family: Futura;
+}
+
+#popup-wrapper {
+   min-width: 450px;
+   min-height: 250px;
+   display: flex;
+   flex-flow: column;
+   background-color: #FFFFFF;
+ }
+
+h3 {
+  margin-top: 0;
+  font-size: 130%;
+  margin-bottom: .3em;
+}
+
+strong {
+  padding-right: 10px;
+  margin-left: 15px;
+}
+
+.jscolor {
+  height: 40px;
+  width: 40px;
+  border: 2px solid #555;
+  border-radius: 6px;
+  color: transparent !important;
+}
+
+#color-background-out {
+  margin-left: -3px;
+}
+
+button {
+  height: 30px;
+  width: 30px;
+  outline: none;
+}
+
+/* provides spacing between settings options and color definition */
+/* 16px border radius matches Duolingo's current styling */
+div.settings-option-wrapper {
+  background-color: #E3E3E3;
+  border-radius: 16px;
+  display:inline-block;
+  margin-top: .3em;
+}
+
+/* provides spacing between the inner contents of a settings and its outer defining edge */
+div.settings-option-inner {
+  margin-bottom: 4px;
+  margin-top: 4px;
+}
+
+/* flex box row styling */
+.row {
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  width: 100%;
+}
+
+/* flex box column styling */
+.column {
+  display: flex;
+  flex-direction: column;
+  flex-basis: 100%;
+  flex: 1;
+  margin-right: 1em;
+}

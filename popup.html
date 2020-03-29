@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html>
+  <body>
+  <div id="popup-wrapper">
+    <div class="row">
+      <div class="column">
+        <h3>Colors:</h3>
+        <div class="settings-option-wrapper">
+          <div class="settings-option-inner">
+              <strong>Background - Outer</strong>
+              <input id="color-background-out" class="jscolor" type="text" value="ffffff" readonly>
+          </div>
+        </div>
+        <div class="settings-option-wrapper">
+          <div class="settings-option-inner">
+              <strong>Background - Inner</strong>
+              <input id="color-background-in" class="jscolor" type="text" value="ffffff" readonly>
+          </div>
+        </div>
+        <h3 style="margin-top: .3em;">Fonts:</h3>
+        <div class="settings-option-wrapper">
+          <div class="settings-option-inner">
+              <strong>Font family</strong>
+              <select id="font-family">
+                <option value="din-round">Standard</option>
+                <option value="Arial">Arial</option>
+                <option value="Impact">Impact</option>
+                <option value="Verdana">Verdana</option>
+                <option value="Futura">Futura</option>
+                <option value="Impact">Calibri</option>
+                <option value="Chalkboard">Chalkboard</option>
+              </select>
+          </div>
+          <div class="settings-option-inner">
+            <strong>Font color</strong>
+            <input id="color-font" class="jscolor" type="text" value="ffffff" readonly>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  </body>
+  <footer>
+    <script src="popup.js"></script>
+    <script src="jscolor.js"></script>
+    <link type="text/css" href="popup.css" rel="stylesheet">
+  </footer>
+</html>
