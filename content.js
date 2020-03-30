@@ -47,14 +47,17 @@ const setInitialBackgroundOut = () => {
 };
 
 const setInitialFont = () => {
-  chrome.storage.sync.get(["fontFamily", "colorFont"], items => {
+  chrome.storage.sync.get(["fontFamily", "fontColor", "fontSize"], items => {
     const elements = document.body.getElementsByTagName("*");
     for (let i = 0; i < elements.length; i++) {
       if (items.fontFamily && items.fontFamily.length > 0) {
         elements[i].style.setProperty("font-family", items.fontFamily, "important");
       }
-      if (items.colorFont && items.colorFont.length > 0) {
-        elements[i].style.setProperty("color", items.colorFont, "important");
+      if (items.fontColor && items.fontColor.length > 0) {
+        elements[i].style.setProperty("color", items.fontColor, "important");
+      }
+      if (items.fontSize && items.fontSize.length > 0) {
+        elements[i].style.setProperty("font-size", items.fontSize + "px", "important");
       }
     }
   });

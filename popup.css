@@ -70,3 +70,8 @@ div.settings-option-inner {
   flex: 1;
   margin-right: 1em;
 }
+
+#reset {
+  width: 100px;
+  margin-top: 16px;
+}

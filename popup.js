@@ -19,7 +19,7 @@ const setBackgroundIn = () => {
   }
 };
 
-const setStartingPopupBackgroundIn = () => {
+const setPopupBackgroundIn = () => {
   let colorBackgroundIn = document.getElementById('color-background-in');
 
   chrome.storage.sync.get(["colorBackgroundIn"], items => {
@@ -50,7 +50,7 @@ const setBackgroundOut = () => {
   }
 };
 
-const setStartingPopupBackgroundOut = () => {
+const setPopupBackgroundOut = () => {
   let colorBackgroundOut = document.getElementById('color-background-out');
 
   chrome.storage.sync.get(["colorBackgroundOut"], items => {
@@ -59,7 +59,7 @@ const setStartingPopupBackgroundOut = () => {
   });
 };
 
-const setFont = element => {
+const setFontFamily = element => {
   // Set font family for entire page.
   chrome.storage.sync.set({ "fontFamily": element.value }, () => {});
   chrome.storage.sync.get(["fontFamily"], () => {
@@ -72,7 +72,7 @@ const setFont = element => {
   });
 };
 
-const setPopupFont = () => {
+const setPopupFontFamily = () => {
   let fontFamily = document.getElementById('font-family');
 
   chrome.storage.sync.get(["fontFamily"], items => {
@@ -80,17 +80,38 @@ const setPopupFont = () => {
   });
 };
 
+const setFontSize = element => {
+  // Set font family for entire page.
+  chrome.storage.sync.set({ "fontSize": element.value }, () => {});
+  chrome.storage.sync.get(["fontSize"], () => {
+    chrome.tabs.query({ active: true, currentWindow: true }, tabs => {
+      chrome.tabs.executeScript(
+        tabs[0].id,
+        { code: 'setInitialFont();' },
+      );
+    });
+  });
+};
+
+const setPopupFontSize = () => {
+  let fontSize = document.getElementById('font-size');
+
+  chrome.storage.sync.get(["fontSize"], items => {
+    fontSize.value = items.fontSize;
+  });
+};
+
 const setFontColor = () => {
   // Set background color for font.
-  let colorFont = document.getElementById('color-font');
+  let fontColor = document.getElementById('font-color');
 
-  if (colorFont) {
-    colorFont.onchange = element => {
+  if (fontColor) {
+    fontColor.onchange = element => {
       let color = '#' + element.target.value;
-      chrome.storage.sync.set({ "colorFont": color }, () => {});
-      chrome.storage.sync.get(["colorFont"], items => {
-        colorFont.style.backgroundColor = items.colorFont;
-        colorFont.value = items.colorBackgroundOut;
+      chrome.storage.sync.set({ "fontColor": color }, () => {});
+      chrome.storage.sync.get(["fontColor"], items => {
+        fontColor.style.backgroundColor = items.fontColor;
+        fontColor.value = items.colorBackgroundOut;
         chrome.tabs.query({ active: true, currentWindow: true }, tabs => {
           chrome.tabs.executeScript(
             tabs[0].id,
@@ -102,23 +123,45 @@ const setFontColor = () => {
   }
 };
 
-const setStartingPopupFontColor = () => {
-  let colorFont = document.getElementById('color-font');
+const setPopupFontColor = () => {
+  let fontColor = document.getElementById('font-color');
 
-  chrome.storage.sync.get(["colorFont"], items => {
-    colorFont.style.backgroundColor = items.colorFont;
-    colorFont.value = items.colorFont;
+  chrome.storage.sync.get(["fontColor"], items => {
+    fontColor.style.backgroundColor = items.fontColor;
+    fontColor.value = items.fontColor;
   });
 };
 
-document.querySelector('select#font-family').addEventListener('change', function() {setFont(this)});
+const reset = () => {
+  chrome.storage.sync.set({ "fontColor": '' }, () => {});
+  chrome.storage.sync.set({ "fontFamily": '' }, () => {});
+  chrome.storage.sync.set({ "fontSize": '' }, () => {});
+  chrome.storage.sync.set({ "colorBackgroundOut": '' }, () => {});
+  chrome.storage.sync.set({ "colorBackgroundIn": '' }, () => {});
 
-setStartingPopupBackgroundIn();
+  updatePopup();
+  chrome.tabs.query({ active: true, currentWindow: true }, tabs => {
+    chrome.tabs.executeScript(
+      tabs[0].id,
+      { code: 'window.location.reload();' },
+    );
+  });
+};
+
+const updatePopup = () => {
+  setPopupBackgroundIn();
+  setPopupBackgroundOut();
+  setPopupFontFamily();
+  setPopupFontSize();
+  setPopupFontColor();
+};
+
+document.querySelector('select#font-family').addEventListener('change', function() {setFontFamily(this)});
+document.querySelector('select#font-size').addEventListener('change', function() {setFontSize(this)});
+document.querySelector('#reset').addEventListener('click', function() {reset()});
+
+updatePopup();
+
 setBackgroundIn();
-
-setStartingPopupBackgroundOut();
 setBackgroundOut();
-
-setPopupFont();
-setStartingPopupFontColor();
 setFontColor();
