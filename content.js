@@ -3,14 +3,13 @@ const setInitialBackgroundIn = () => {
     if (items.colorBackgroundIn && items.colorBackgroundIn.length > 0) {
       // A list of class names that will have the inner background color.
       const classNames = [
-        '_2hEQd',
-        '_1E3L7',
-        'a5SW0',
-        '_3DsW-',
+        'nae5G',
+        'COg1x',
+        '_2iVqi',
+        '_10HmK',
         '_2VdVL',
-        '_3s2x_',
-        '_2yvtl',
-        '_1O1Bz',
+        '_1Ch3x',
+        '_3kaGF',
       ];
       classNames.forEach(className => {
         const elements = document.getElementsByClassName(className);
@@ -31,7 +30,7 @@ const setInitialBackgroundOut = () => {
       document.body.style.backgroundColor = items.colorBackgroundOut;
       // A list of class names that will have the outer background color.
       const classNames = [
-        '_3giip',
+        '_2vedk',
       ];
       classNames.forEach(className => {
         const elements = document.getElementsByClassName(className);
